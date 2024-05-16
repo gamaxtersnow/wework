@@ -1,5 +1,5 @@
 {
-    "name": "pithyone/wechat",
+    "name": "gamaxtersnow/wechat",
     "description": "企业微信SDK",
     "type": "library",
     "license": "MIT",
@@ -26,9 +26,9 @@
         "sort-packages": true
     },
     "extra": {
-        "laravel": {
-            "providers": [
-                "WeWork\\Laravel\\WeWorkServiceProvider"
+        "think": {
+            "services": [
+                "WeWork\\Think\\WeWorkService"
             ]
         }
     }
