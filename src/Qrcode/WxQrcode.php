@@ -1,7 +1,7 @@
 <?php
 namespace WeWork\Qrcode;
 use Endroid\QrCode\QrCode;
-use Endroid\QrCode\Response\QrCodeResponse;
+use Endroid\QrCode\Writer\PngWriter;
 use WeWork\Traits\AuthUrlTrait;
 use WeWork\Traits\QrcodeTrait;
 use WeWork\Traits\RedirectUrlTrait;
@@ -11,25 +11,28 @@ use WeWork\Traits\SecretTrait;
 
 class WxQrcode {
     use QrcodeTrait,CorpIdTrait, SecretTrait,AgentIdTrait,AuthUrlTrait,RedirectUrlTrait;
+    public PngWriter $pngWriter;
+    public function __construct(PngWriter $pngWriter)
+    {
+        $this->pngWriter = $pngWriter;
+    }
+
     public function getLoginQrCode(string $state): WxQrcode
     {
         $text = $this->authUrl.'?appid='.$this->corpId.'&redirect_uri='.$this->redirectUrl.'&response_type=code&scope=snsapi_privateinfo&state='.$state.'&agentid='.$this->agentId.'&connect_redirect=1#wechat_redirect';
-        $this->qrcodeClient->setText($text);
+        $this->qrcodeClient->setData($text);
+        $this->qrcodeClient->setMargin(0);
         return $this;
-
     }
 
     public function getQrcodeClient(): QrCode{
         return $this->qrcodeClient;
     }
     public function toBase64(): string {
-        $response = new QrCodeResponse($this->qrcodeClient);
-        return 'data:png;base64,' . base64_encode($response->getContent());
-
+        return $this->pngWriter->write($this->qrcodeClient)->getDataUri();
     }
-    public function send(){
-        $response = new QrCodeResponse($this->qrcodeClient);
-        $response->send();
+    public function saveToFile(string $filePath): void
+    {
+        $this->pngWriter->write($this->qrcodeClient)->saveToFile($filePath);
     }
-
 }

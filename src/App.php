@@ -174,12 +174,10 @@ class App extends ContainerBuilder
     private function _registerQrCode(): void
     {
         $this->register('qrcode', QrCode::class)
-            ->addMethodCall('setWriterByName',['png'])
-            ->addMethodCall('setMargin', [0])
-            ->addMethodCall('setErrorCorrectionLevel',[ErrorCorrectionLevel::Low])
-            ->addMethodCall('setValidateResult',[false]);
+            ->addMethodCall('create', ['']);
     }
-    private function _registerQwQrCode(){
+    private function _registerQwQrCode(): void
+    {
         $this->register('wx_qrcode', WxQrcode::class)
             ->addMethodCall('setCorpId', [$this->config->get('corp_id')])
             ->addMethodCall('setSecret', [$this->config->get('secret')])
@@ -188,7 +186,8 @@ class App extends ContainerBuilder
             ->addMethodCall('setRedirectUrl', [$this->config->get('redirect_url')])
             ->addMethodCall('setQrCodeClient', [new Reference('qrcode')]);
     }
-    public function _registerWXBizDataCrypt() {
+    public function _registerWXBizDataCrypt(): void
+    {
         $this->register('wx_biz_data_crypt', WXBizDataCrypt::class)
             ->addMethodCall('setAppId', [$this->config->get('app_id')]);
     }
