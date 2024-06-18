@@ -174,7 +174,7 @@ class App extends ContainerBuilder
     private function _registerQrCode(): void
     {
         $this->register('qrcode', QrCode::class)
-            ->addMethodCall('create', ['']);
+            ->setArguments(['']);
     }
     private function _registerQwQrCode(): void
     {
