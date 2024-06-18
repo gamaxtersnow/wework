@@ -2,6 +2,8 @@
 
 namespace WeWork;
 
+use WeWork\Bridge\Cache;
+use WeWork\Bridge\Log;
 use WeWork\qrcode\WxQrcode;
 use Doctrine\Common\Collections\ArrayCollection;
 use Endroid\QrCode\ErrorCorrectionLevel;
@@ -70,10 +72,7 @@ class App extends ContainerBuilder
     }
     private function _registerLogger(): void
     {
-        $log = $this->config->get('log');
-        if (is_subclass_of($log, LoggerInterface::class)) {
-            $this->register('logger', $log);
-        }
+        $this->register('logger', Log::class);
     }
     private function _registerHttpClient(): void
     {
@@ -86,11 +85,7 @@ class App extends ContainerBuilder
     }
     private function _registerCache(): void
     {
-        $cache = $this->config->get('cache');
-
-        if (is_subclass_of($cache, CacheInterface::class)) {
-            $this->register('cache', $cache);
-        }
+        $this->register('cache', Cache::class);
     }
     private function _registerToken(): void
     {
