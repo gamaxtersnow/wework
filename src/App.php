@@ -22,8 +22,8 @@ use WeWork\Http\HttpClient;
 
 class App extends ContainerBuilder
 {
-    private $config;
-    private $apiServices = [
+    private ArrayCollection $config;
+    private array $apiServices = [
         'agent'      => Api\Agent::class,
         'appChat'    => Api\AppChat::class,
         'batch'      => Api\Batch::class,
@@ -176,7 +176,8 @@ class App extends ContainerBuilder
             ->addMethodCall('setJsApiTicket', [new Reference('jsApiTicket')])
             ->addMethodCall('setTicket', [new Reference('ticket')]);
     }
-    private function _registerQrCode(){
+    private function _registerQrCode(): void
+    {
         $this->register('qrcode', QrCode::class)
             ->addMethodCall('setWriterByName',['png'])
             ->addMethodCall('setMargin', [0])

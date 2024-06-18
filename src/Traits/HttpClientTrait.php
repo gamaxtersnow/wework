@@ -9,7 +9,7 @@ trait HttpClientTrait
     /**
      * @var HttpClientInterface
      */
-    protected $httpClient;
+    protected HttpClientInterface $httpClient;
 
     /**
      * @param HttpClientInterface $httpClient
