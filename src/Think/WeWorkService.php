@@ -14,10 +14,15 @@ class WeWorkService extends Service
             $config = require __DIR__.'/config.php';
         }
         $agents = $config['agents'];
-        foreach ($agents as $agentName => $agentConfig) {
-            $this->app->bind('wework'.ucfirst($agentName),new App($config + $agentConfig));
+        //初始化默认服务
+        $defaultConfig = $agents[$config['default']]??[];
+        unset($agents[$config['default']]);
+        if(!empty($defaultConfig)) {
+            $this->app->bind('wework',new App($config + $defaultConfig));
         }
-
+        foreach ($agents as $agentName => $agentConfig) {
+            $this->app->bind('wework_'.$agentName,new App($config + $agentConfig));
+        }
     }
 
     public function boot()
