@@ -180,7 +180,7 @@ class App extends ContainerBuilder
         $this->register('qrcode', QrCode::class)
             ->addMethodCall('setWriterByName',['png'])
             ->addMethodCall('setMargin', [0])
-            ->addMethodCall('setErrorCorrectionLevel',[new ErrorCorrectionLevel(ErrorCorrectionLevel::LOW)])
+            ->addMethodCall('setErrorCorrectionLevel',[ErrorCorrectionLevel::Low])
             ->addMethodCall('setValidateResult',[false]);
     }
     private function _registerQwQrCode(){
