@@ -7,12 +7,12 @@ trait AgentIdTrait
     /**
      * @var string
      */
-    protected $agentId;
+    protected string $agentId;
 
     /**
      * @param string $agentId
      */
-    public function setAgentId($agentId): void
+    public function setAgentId(string $agentId): void
     {
         $this->agentId = $agentId;
     }

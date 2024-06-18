@@ -7,7 +7,7 @@ class File implements ResponseMessageInterface
     /**
      * @var string
      */
-    private $mediaId;
+    private string $mediaId;
 
     /**
      * @param string $mediaId

@@ -9,7 +9,7 @@ trait JsApiTicketTrait
     /**
      * @var JsApiTicket
      */
-    protected $jsApiTicket;
+    protected JsApiTicket $jsApiTicket;
 
     /**
      * @param JsApiTicket $jsApiTicket

@@ -7,7 +7,7 @@ class MPNews implements ResponseMessageInterface
     /**
      * @var MPArticle[]
      */
-    private $articles;
+    private array $articles;
 
     /**
      * @param MPArticle[] $articles

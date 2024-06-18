@@ -7,32 +7,32 @@ class MPArticle implements ResponseMessageInterface
     /**
      * @var string
      */
-    private $title;
+    private string $title;
 
     /**
      * @var string
      */
-    private $thumbMediaId;
+    private string $thumbMediaId;
 
     /**
      * @var string
      */
-    private $author;
+    private string $author;
 
     /**
      * @var string
      */
-    private $contentSourceUrl;
+    private string $contentSourceUrl;
 
     /**
      * @var string
      */
-    private $content;
+    private string $content;
 
     /**
      * @var string
      */
-    private $digest;
+    private string $digest;
 
     /**
      * @param string $title

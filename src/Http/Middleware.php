@@ -15,13 +15,13 @@ use WeWork\ApiCache\Token;
 
 class Middleware
 {
-    const RETRY_MAX_RETRIES = 1;
+    const int RETRY_MAX_RETRIES = 1;
 
     /**
      * @param Token $token
      * @return callable
      */
-    public static function auth(Token $token)
+    public static function auth(Token $token): callable
     {
         return \GuzzleHttp\Middleware::mapRequest(function (RequestInterface $request) use ($token) {
             return $request->withUri(Uri::withQueryValue($request->getUri(), 'access_token', $token->get()));
@@ -32,7 +32,7 @@ class Middleware
      * @param LoggerInterface $logger
      * @return callable
      */
-    public static function log(LoggerInterface $logger)
+    public static function log(LoggerInterface $logger): callable
     {
         return \GuzzleHttp\Middleware::log($logger, new MessageFormatter(MessageFormatter::DEBUG), LogLevel::DEBUG);
     }
@@ -41,7 +41,7 @@ class Middleware
      * @param LoggerInterface $logger
      * @return callable
      */
-    public static function retry(LoggerInterface $logger)
+    public static function retry(LoggerInterface $logger): callable
     {
         return \GuzzleHttp\Middleware::retry(function (
             $retries,
@@ -76,7 +76,7 @@ class Middleware
     /**
      * @return callable
      */
-    public static function response()
+    public static function response(): callable
     {
         return \GuzzleHttp\Middleware::mapResponse(function (ResponseInterface $response) {
             return new Response(

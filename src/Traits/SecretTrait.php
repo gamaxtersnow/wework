@@ -7,7 +7,7 @@ trait SecretTrait
     /**
      * @var string
      */
-    protected $secret;
+    protected string $secret;
 
     /**
      * @param string $secret

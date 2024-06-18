@@ -7,17 +7,17 @@ class Video implements ResponseMessageInterface, ReplyMessageInterface
     /**
      * @var string
      */
-    private $mediaId;
+    private string $mediaId;
 
     /**
      * @var string
      */
-    private $title;
+    private string $title;
 
     /**
      * @var string
      */
-    private $description;
+    private string $description;
 
     /**
      * @param string $mediaId

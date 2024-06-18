@@ -7,27 +7,27 @@ class Article implements ResponseMessageInterface, ReplyMessageInterface
     /**
      * @var string
      */
-    private $title;
+    private string $title;
 
     /**
      * @var string
      */
-    private $description;
+    private string $description;
 
     /**
      * @var string
      */
-    private $url;
+    private string $url;
 
     /**
      * @var string
      */
-    private $picUrl;
+    private string $picUrl;
 
     /**
      * @var string
      */
-    private $btnTxt;
+    private string $btnTxt;
 
     /**
      * @param string $title

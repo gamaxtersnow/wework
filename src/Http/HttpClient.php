@@ -3,6 +3,7 @@
 namespace WeWork\Http;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\StreamInterface;
 
 class HttpClient implements HttpClientInterface
@@ -10,7 +11,7 @@ class HttpClient implements HttpClientInterface
     /**
      * @var Client
      */
-    private $client;
+    private Client $client;
 
     /**
      * @param Client $client
@@ -24,6 +25,7 @@ class HttpClient implements HttpClientInterface
      * @param string $uri
      * @param array $query
      * @return array
+     * @throws GuzzleException
      */
     public function get(string $uri, array $query = []): array
     {
@@ -34,6 +36,7 @@ class HttpClient implements HttpClientInterface
      * @param string $uri
      * @param array $query
      * @return StreamInterface
+     * @throws GuzzleException
      */
     public function getStream(string $uri, array $query = []): StreamInterface
     {
@@ -45,6 +48,7 @@ class HttpClient implements HttpClientInterface
      * @param array $json
      * @param array $query
      * @return array
+     * @throws GuzzleException
      */
     public function postJson(string $uri, array $json = [], array $query = []): array
     {
@@ -56,6 +60,7 @@ class HttpClient implements HttpClientInterface
      * @param string $path
      * @param array $query
      * @return array
+     * @throws GuzzleException
      */
     public function postFile(string $uri, string $path, array $query = []): array
     {

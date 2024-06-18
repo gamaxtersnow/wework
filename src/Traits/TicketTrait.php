@@ -9,7 +9,7 @@ trait TicketTrait
     /**
      * @var Ticket
      */
-    protected $ticket;
+    protected Ticket $ticket;
 
     /**
      * @param Ticket $ticket

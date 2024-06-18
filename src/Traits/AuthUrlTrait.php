@@ -7,7 +7,7 @@ trait AuthUrlTrait
     /**
      * @var string
      */
-    protected $authUrl;
+    protected string $authUrl;
 
     /**
      * @param string $authUrl

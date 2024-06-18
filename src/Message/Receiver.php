@@ -7,31 +7,31 @@ class Receiver
     /**
      * @var array
      */
-    private $receiver;
+    private array $receiver;
 
     /**
-     * @param string|array $user
+     * @param array|string $user
      * @return void
      */
-    public function setUser($user): void
+    public function setUser(array|string $user): void
     {
         $this->set('touser', $user);
     }
 
     /**
-     * @param string|array $party
+     * @param array|string $party
      * @return void
      */
-    public function setParty($party): void
+    public function setParty(array|string $party): void
     {
         $this->set('toparty', $party);
     }
 
     /**
-     * @param string|array $tag
+     * @param array|string $tag
      * @return void
      */
-    public function setTag($tag): void
+    public function setTag(array|string $tag): void
     {
         $this->set('totag', $tag);
     }
@@ -49,7 +49,7 @@ class Receiver
      * @param mixed $value
      * @return void
      */
-    private function set(string $key, $value): void
+    private function set(string $key, mixed $value): void
     {
         if (is_array($value)) {
             $value = implode('|', $value);

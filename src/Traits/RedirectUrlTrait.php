@@ -7,7 +7,7 @@ trait RedirectUrlTrait
     /**
      * @var string
      */
-    protected $redirectUrl;
+    protected string $redirectUrl;
 
     /**
      * @param string $redirectUrl

@@ -7,7 +7,7 @@ class Image implements ResponseMessageInterface, ReplyMessageInterface
     /**
      * @var string
      */
-    private $mediaId;
+    private string $mediaId;
 
     /**
      * @param string $mediaId

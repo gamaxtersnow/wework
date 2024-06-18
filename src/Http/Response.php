@@ -2,12 +2,15 @@
 
 namespace WeWork\Http;
 
+use GuzzleHttp\Utils;
+use Psr\Http\Message\StreamInterface;
+
 class Response extends \GuzzleHttp\Psr7\Response
 {
     /**
      * @inheritdoc
      */
-    public function getBody()
+    public function getBody(): StreamInterface
     {
         $stream = parent::getBody();
 
@@ -25,6 +28,6 @@ class Response extends \GuzzleHttp\Psr7\Response
      */
     public function toArray(): array
     {
-        return \GuzzleHttp\json_decode((string)$this->getBody(), true);
+        return Utils::jsonDecode((string)$this->getBody(), true);
     }
 }

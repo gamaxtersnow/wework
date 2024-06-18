@@ -2,6 +2,7 @@
 
 namespace WeWork\ApiCache;
 
+use Psr\SimpleCache\InvalidArgumentException;
 use WeWork\Traits\CacheTrait;
 
 abstract class AbstractApiCache
@@ -14,16 +15,16 @@ abstract class AbstractApiCache
     abstract protected function getCacheKey(): string;
 
     /**
-     * @return mixed
+     * @return string
      */
-    abstract protected function getFromServer();
+    abstract protected function getFromServer(): string;
 
     /**
      * @param bool $refresh
      * @return mixed
-     * @throws \Psr\SimpleCache\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
-    public function get(bool $refresh = false)
+    public function get(bool $refresh = false): mixed
     {
         $key = $this->getCacheKey();
 

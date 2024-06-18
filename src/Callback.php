@@ -7,9 +7,9 @@ use WeWork\Crypt\WXBizMsgCrypt;
 use WeWork\Message\ReplyMessageInterface;
 
 class Callback {
-    protected $request;
-    protected $crypt;
-    protected $content = null;
+    protected Request $request;
+    protected WXBizMsgCrypt $crypt;
+    protected mixed $content = null;
     public function __construct(Request $request, WXBizMsgCrypt $crypt)
     {
         $this->request = $request;

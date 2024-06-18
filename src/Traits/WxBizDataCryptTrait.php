@@ -9,7 +9,7 @@ trait WxBizDataCryptTrait
     /**
      * @var WXBizDataCrypt
      */
-    protected $wxBizDataCrypt;
+    protected WXBizDataCrypt $wxBizDataCrypt;
 
     public function setWxBizDataCrypt(WXBizDataCrypt $wxBizDataCrypt): void
     {

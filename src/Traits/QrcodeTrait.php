@@ -10,7 +10,7 @@ trait QrcodeTrait
     /**
      * @var QrCode
      */
-    protected $qrcodeClient;
+    protected QrCode $qrcodeClient;
 
     /**
      * @param QrCode $qrcodeClient

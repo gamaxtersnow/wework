@@ -7,7 +7,7 @@ trait AppIdTrait
     /**
      * @var string
      */
-    protected $appid;
+    protected string $appid;
 
     public function setAppId(string $appId): void
     {

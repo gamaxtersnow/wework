@@ -12,9 +12,9 @@ use WeWork\Traits\SecretTrait;
 class WxQrcode {
     use QrcodeTrait,CorpIdTrait, SecretTrait,AgentIdTrait,AuthUrlTrait,RedirectUrlTrait;
     public PngWriter $pngWriter;
-    public function __construct(PngWriter $pngWriter)
+    public function __construct()
     {
-        $this->pngWriter = $pngWriter;
+        $this->pngWriter = new PngWriter();
     }
 
     public function getLoginQrCode(string $state): WxQrcode
@@ -29,7 +29,7 @@ class WxQrcode {
         return $this->qrcodeClient;
     }
     public function toBase64(): string {
-        return $this->pngWriter->write($this->qrcodeClient)->getDataUri();
+        return   $this->pngWriter->write($this->qrcodeClient)->getDataUri();
     }
     public function saveToFile(string $filePath): void
     {

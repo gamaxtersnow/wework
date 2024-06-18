@@ -2,6 +2,7 @@
 
 namespace WeWork;
 
+use Psr\SimpleCache\InvalidArgumentException;
 use WeWork\Crypt\PrpCrypt;
 use WeWork\Traits\CorpIdTrait;
 use WeWork\Traits\JsApiTicketTrait;
@@ -14,7 +15,7 @@ class JSSdk
     /**
      * @param string $url
      * @return array
-     * @throws \Psr\SimpleCache\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function getConfig(string $url): array
     {
@@ -31,7 +32,7 @@ class JSSdk
 
     /**
      * @return array
-     * @throws \Psr\SimpleCache\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function getChooseInvoiceConfig(): array
     {

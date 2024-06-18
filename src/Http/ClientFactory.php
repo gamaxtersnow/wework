@@ -11,10 +11,10 @@ class ClientFactory
 {
     /**
      * @param LoggerInterface $logger
-     * @param Token $token
+     * @param Token|null $token
      * @return Client
      */
-    public static function create(LoggerInterface $logger, $token = null)
+    public static function create(LoggerInterface $logger, Token $token = null): Client
     {
         $stack = HandlerStack::create();
 

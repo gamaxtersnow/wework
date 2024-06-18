@@ -7,7 +7,7 @@ class News implements ResponseMessageInterface, ReplyMessageInterface
     /**
      * @var Article[]
      */
-    private $articles;
+    private array $articles;
 
     /**
      * @param Article[] $articles

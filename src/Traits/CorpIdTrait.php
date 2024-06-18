@@ -7,7 +7,7 @@ trait CorpIdTrait
     /**
      * @var string
      */
-    protected $corpId;
+    protected string $corpId;
 
     /**
      * @param string $corpId

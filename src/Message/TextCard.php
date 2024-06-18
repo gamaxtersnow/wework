@@ -7,22 +7,22 @@ class TextCard implements ResponseMessageInterface
     /**
      * @var string
      */
-    private $title;
+    private string $title;
 
     /**
      * @var string
      */
-    private $description;
+    private string $description;
 
     /**
      * @var string
      */
-    private $url;
+    private string $url;
 
     /**
      * @var string
      */
-    private $btnTxt;
+    private string $btnTxt;
 
     /**
      * @param string $title
