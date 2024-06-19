@@ -45,6 +45,16 @@ class HttpClient implements HttpClientInterface
 
     /**
      * @param string $uri
+     * @param array $query
+     * @return array
+     * @throws GuzzleException
+     */
+    public function getStreamHeader(string $uri, array $query = []): array
+    {
+        return $this->client->get($uri, compact('query'))->getHeaders();
+    }
+    /**
+     * @param string $uri
      * @param array $json
      * @param array $query
      * @return array

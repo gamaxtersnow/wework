@@ -53,4 +53,17 @@ class Media
     {
         return $this->httpClient->postFile('media/uploadimg', $path);
     }
+
+    /**
+     *获取媒体文件名称
+     *
+     * @param string $id
+     * @return string
+     */
+    public function getFilename(string $id): string
+    {
+        $headers =  $this->httpClient->getStreamHeader('media/get', ['media_id' => $id]);
+        $contentDisposition = $headers['Content-disposition']??'';
+        return trim(substr($contentDisposition[0], strrpos($contentDisposition[0], '=') + 1), '"');
+    }
 }

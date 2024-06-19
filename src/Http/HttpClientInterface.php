@@ -19,7 +19,12 @@ interface HttpClientInterface
      * @return StreamInterface
      */
     public function getStream(string $uri, array $query = []): StreamInterface;
-
+    /**
+     * @param string $uri
+     * @param array $query
+     * @return array
+     */
+    public function getStreamHeader(string $uri, array $query = []): array;
     /**
      * @param string $uri
      * @param array $json

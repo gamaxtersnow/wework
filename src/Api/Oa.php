@@ -77,4 +77,43 @@ class Oa
     {
         return $this->httpClient->postJson('oa/approval/update_template', $query);
     }
+    /**
+     * 查询审批单当前状态
+     * @param array $query
+     * @return array
+     */
+    public function getOpenApprovalData(array $query):array
+    {
+        return $this->httpClient->postJson('corp/getopenapprovaldata', $query);
+    }
+
+    /**
+     * 高级--设置审批单审批信息
+     * @param array $query
+     * @return array
+     */
+    public function setAdvancedApprovalDetail(array $query):array
+    {
+        return $this->httpClient->postJson('advanced_feature/set_approval_detail', $query);
+    }
+
+    /**
+     * 高级--批量获取申请单ID
+     * @param array $query
+     * @return array
+     */
+    public function getAdvancedApplyIdList(array $query):array
+    {
+        return $this->httpClient->postJson('advanced_feature/get_apply_id_list', $query);
+    }
+
+    /**
+     * 高级--获取申请单详细信息
+     * @param array $query
+     * @return array
+     */
+    public function getAdvancedApprovalInfo(array $query):array
+    {
+        return $this->httpClient->postJson('advanced_feature/get_approval_info', $query);
+    }
 }
