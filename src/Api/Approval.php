@@ -4,7 +4,7 @@ namespace WeWork\Api;
 
 use WeWork\Traits\HttpClientTrait;
 
-class Oa
+class Approval
 {
     use HttpClientTrait;
 

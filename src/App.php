@@ -36,7 +36,7 @@ class App extends ContainerBuilder
         'message'    => Api\Message::class,
         'tag'        => Api\Tag::class,
         'user'       => Api\User::class,
-        'oa'      => Api\Oa::class,
+        'oa'      => Api\Approval::class,
         'session' => Api\Session::class
     ];
     public function __construct(array $config)
