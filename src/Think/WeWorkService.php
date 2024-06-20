@@ -10,9 +10,6 @@ class WeWorkService extends Service
     public function register(): void
     {
         $config = config('wework');
-        if(empty($config)) {
-            $config = require __DIR__.'/config.php';
-        }
         $agents = $config['agents'];
         //初始化默认服务
         $defaultConfig = $agents[$config['default']]??[];

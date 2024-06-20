@@ -1,6 +1,6 @@
 {
     "name": "gamaxtersnow/wechat",
-    "version": "4.0.12",
+    "version": "4.0.13",
     "description": "企业微信SDK",
     "type": "library",
     "license": "MIT",
@@ -30,7 +30,10 @@
         "think": {
             "services": [
                 "WeWork\\Think\\WeWorkService"
-            ]
+            ],
+            "config":{
+                "wework": "src/Think/config.php"
+            }
         }
     }
 }
