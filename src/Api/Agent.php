@@ -3,11 +3,15 @@
 namespace WeWork\Api;
 
 use WeWork\Traits\AgentIdTrait;
+use WeWork\Traits\AuthUrlTrait;
+use WeWork\Traits\CorpIdTrait;
 use WeWork\Traits\HttpClientTrait;
+use WeWork\Traits\RedirectUrlTrait;
+use WeWork\Traits\SecretTrait;
 
 class Agent
 {
-    use HttpClientTrait, AgentIdTrait;
+    use HttpClientTrait, AgentIdTrait, CorpIdTrait, SecretTrait,AuthUrlTrait,RedirectUrlTrait;
 
     /**
      * 获取应用
@@ -38,5 +42,8 @@ class Agent
     public function list(): array
     {
         return $this->httpClient->get('agent/list');
+    }
+    public function getLoginAuthUrl(string $state,string $scope='snsapi_privateinfo'):string {
+        return $this->authUrl.'?appid='.$this->corpId.'&redirect_uri='.$this->redirectUrl.'&response_type=code&scope='.$scope.'&state='.$state.'&agentid='.$this->agentId.'&connect_redirect=1#wechat_redirect';
     }
 }

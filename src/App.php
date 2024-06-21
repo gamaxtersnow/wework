@@ -132,6 +132,13 @@ class App extends ContainerBuilder
         if (in_array($id, ['agent', 'menu', 'message'])) {
             $api->addMethodCall('setAgentId', [$this->config->get('agent_id')]);
         }
+        if ($id == 'agent') {
+            $api->addMethodCall('setAgentId', [$this->config->get('agent_id')])
+                ->addMethodCall('setCorpId', [$this->config->get('corp_id')])
+                ->addMethodCall('setSecret', [$this->config->get('secret')])
+                ->addMethodCall('setAuthUrl', [$this->config->get('oauth_url')])
+                ->addMethodCall('setRedirectUrl', [$this->config->get('redirect_url')]);
+        }
         if($id == 'session') {
             $api->addMethodCall('setWxBizDataCrypt', [new Reference('wx_biz_data_crypt')]);
         }
@@ -176,11 +183,6 @@ class App extends ContainerBuilder
     private function _registerQwQrCode(): void
     {
         $this->register('wx_qrcode', WxQrcode::class)
-            ->addMethodCall('setCorpId', [$this->config->get('corp_id')])
-            ->addMethodCall('setSecret', [$this->config->get('secret')])
-            ->addMethodCall('setAgentId', [$this->config->get('agent_id')])
-            ->addMethodCall('setAuthUrl', [$this->config->get('oauth_url')])
-            ->addMethodCall('setRedirectUrl', [$this->config->get('redirect_url')])
             ->addMethodCall('setQrCodeClient', [new Reference('qrcode')]);
     }
     public function _registerWXBizDataCrypt(): void
