@@ -33,6 +33,16 @@ class Media
     }
 
     /**
+     * 同步获取临时素材
+     * @param string $id
+     * @return StreamInterface
+     */
+    public function getSync(string $id): StreamInterface
+    {
+        return $this->httpClient->getStream('media/get', ['media_id' => $id],true);
+    }
+
+    /**
      * 获取高清语音素材
      *
      * @param string $id

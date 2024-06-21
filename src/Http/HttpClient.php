@@ -35,12 +35,13 @@ class HttpClient implements HttpClientInterface
     /**
      * @param string $uri
      * @param array $query
+     * @param bool $stream
      * @return StreamInterface
      * @throws GuzzleException
      */
-    public function getStream(string $uri, array $query = []): StreamInterface
+    public function getStream(string $uri, array $query = [],bool $stream=false): StreamInterface
     {
-        return $this->client->get($uri, compact('query'))->getBody();
+        return $this->client->get($uri, ['query'=>$query,'stream'=>$stream])->getBody();
     }
 
     /**

@@ -16,9 +16,11 @@ interface HttpClientInterface
     /**
      * @param string $uri
      * @param array $query
+     * @param bool $stream
      * @return StreamInterface
      */
-    public function getStream(string $uri, array $query = []): StreamInterface;
+    public function getStream(string $uri, array $query = [],bool $stream=false): StreamInterface;
+
     /**
      * @param string $uri
      * @param array $query
