@@ -13,6 +13,9 @@ class WeWorkService extends Service
         $agents = $config['agents']??[];
         unset($config['agents']);
         foreach ($agents as $agentName => $agentConfig) {
+            if($agentName == $config['default']){
+                $this->app->bind('wework',new App($config + $agentConfig));
+            }
             $this->app->bind('wework_'.$agentName,new App($config + $agentConfig));
         }
     }
