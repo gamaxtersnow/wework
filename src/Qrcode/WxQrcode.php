@@ -17,10 +17,12 @@ class WxQrcode {
         $this->pngWriter = new PngWriter();
     }
 
-    public function getLoginQrCode(string $state): WxQrcode
+    private function getLoginAuthUrl(string $state,string $scope='snsapi_privateinfo'):string {
+        return $this->authUrl.'?appid='.$this->corpId.'&redirect_uri='.$this->redirectUrl.'&response_type=code&scope='.$scope.'&state='.$state.'&agentid='.$this->agentId.'&connect_redirect=1#wechat_redirect';
+    }
+    public function getLoginQrCode(string $state,string $scope='snsapi_privateinfo'): WxQrcode
     {
-        $text = $this->authUrl.'?appid='.$this->corpId.'&redirect_uri='.$this->redirectUrl.'&response_type=code&scope=snsapi_privateinfo&state='.$state.'&agentid='.$this->agentId.'&connect_redirect=1#wechat_redirect';
-        $this->qrcodeClient->setData($text);
+        $this->qrcodeClient->setData($this->getLoginAuthUrl($state,$scope));
         $this->qrcodeClient->setMargin(0);
         return $this;
     }
