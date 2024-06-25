@@ -14,32 +14,32 @@ class Cache implements CacheInterface
 
     public function set($key, $value, $ttl = null): bool
     {
-        \think\facade\Cache::set($key, $value, $ttl);
+        return \think\facade\Cache::set($key, $value, $ttl);
     }
 
     public function delete($key): bool
     {
-        \think\facade\Cache::delete($key);
+        return \think\facade\Cache::delete($key);
     }
 
     public function clear(): bool
     {
-        \think\facade\Cache::clear();
+        return \think\facade\Cache::clear();
     }
 
     public function getMultiple($keys, $default = null): iterable
     {
-        \think\facade\Cache::getMultiple($keys, $default);
+        return \think\facade\Cache::getMultiple($keys, $default);
     }
 
     public function setMultiple($values, $ttl = null): bool
     {
-        \think\facade\Cache::setMultiple($values, $ttl);
+        return \think\facade\Cache::setMultiple($values, $ttl);
     }
 
     public function deleteMultiple($keys): bool
     {
-        \think\facade\Cache::deleteMultiple($keys);
+        return \think\facade\Cache::deleteMultiple($keys);
     }
 
     public function has($key): bool
