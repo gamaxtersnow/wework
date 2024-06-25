@@ -94,21 +94,6 @@ class HttpClient implements HttpClientInterface
             list($uri,$query) = $url;
             $promises[$url] = $this->client->getAsync($uri, compact('query'));
         }
-        // 等待所有请求完成
-        $results = (Utils::all($promises))->wait();
-        // 处理每个请求的响应
-        foreach ($results as $url => $result) {
-            print_r($result);
-            if ($result['state'] === 'fulfilled') {
-                // 处理成功的响应
-                $response = $result['value'];
-                echo "Response from $url: " . $response->getBody()->getContents() . "\n";
-            } else {
-                // 处理失败的请求
-                $reason = $result['reason'];
-                echo "Request to $url failed: $reason\n";
-            }
-        }
-        return [];
+        return (Utils::all($promises))->wait();
     }
 }

@@ -81,6 +81,13 @@ class Media
         foreach ($mediaIds as $mediaId) {
             $urls[] = ['media/get',['media_id' => $mediaId]];
         }
-        return $this->httpClient->getAsync($urls);
+        $results = $this->httpClient->getAsync($urls);
+        foreach ($results as $url => $response) {
+            $headers = $response->getHeaders();
+            $contentDisposition = $headers['Content-disposition']??'';
+            echo $url."\n";
+            echo trim(substr($contentDisposition[0], strrpos($contentDisposition[0], '=') + 1), '"') . "\n";
+        }
+        return [];
     }
 }
