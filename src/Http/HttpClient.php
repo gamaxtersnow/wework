@@ -4,6 +4,7 @@ namespace WeWork\Http;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Promise\Promise;
 use Psr\Http\Message\StreamInterface;
 
 class HttpClient implements HttpClientInterface
@@ -83,5 +84,29 @@ class HttpClient implements HttpClientInterface
                 ]
             ]
         ], compact('query')))->toArray();
+    }
+
+    public function getAsync(array $urls = []): array
+    {
+        $promises = [];
+        foreach ($urls as $url => $params) {
+            $promises[$url] = $this->client->getAsync($url, ['query' => $params]);
+        }
+        // 等待所有请求完成
+        $results = (new Promise($promises))->wait();
+        // 处理每个请求的响应
+        foreach ($results as $url => $result) {
+            print_r($result);
+            if ($result['state'] === 'fulfilled') {
+                // 处理成功的响应
+                $response = $result['value'];
+                echo "Response from $url: " . $response->getBody()->getContents() . "\n";
+            } else {
+                // 处理失败的请求
+                $reason = $result['reason'];
+                echo "Request to $url failed: $reason\n";
+            }
+        }
+        return [];
     }
 }

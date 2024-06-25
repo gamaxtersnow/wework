@@ -42,4 +42,5 @@ interface HttpClientInterface
      * @return array
      */
     public function postFile(string $uri, string $path, array $query = []): array;
+    public function getAsync(array $urls = []):array;
 }
