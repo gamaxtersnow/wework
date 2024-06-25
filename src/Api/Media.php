@@ -90,6 +90,6 @@ class Media
     }
     private function _getMediaNameByHeaders(array $headers):string {
         $contentDisposition = $headers['Content-disposition']??[''];
-        return trim(substr($contentDisposition, strrpos($contentDisposition, '=') + 1), '"') . "\n";
+        return trim(substr($contentDisposition[0], strrpos($contentDisposition[0], '=') + 1), '"');
     }
 }
