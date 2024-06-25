@@ -73,21 +73,23 @@ class Media
     public function getFilename(string $id): string
     {
         $headers =  $this->httpClient->getStreamHeader('media/get', ['media_id' => $id]);
-        $contentDisposition = $headers['Content-disposition']??'';
-        return trim(substr($contentDisposition[0], strrpos($contentDisposition[0], '=') + 1), '"');
+        return $this->_getMediaNameByHeaders($headers);
     }
     public function getMediaNames(array $mediaIds): array {
         $urls = [];
         foreach ($mediaIds as $mediaId) {
-            $urls[] = ['media/get',['media_id' => $mediaId]];
+            $urls[$mediaId] = ['media/get',['media_id' => $mediaId]];
         }
         $results = $this->httpClient->getAsync($urls);
-        foreach ($results as $url => $response) {
+        $mediaNames = [];
+        foreach ($results as $mediaId => $response) {
             $headers = $response->getHeaders();
-            $contentDisposition = $headers['Content-disposition']??'';
-            echo $url."\n";
-            echo trim(substr($contentDisposition[0], strrpos($contentDisposition[0], '=') + 1), '"') . "\n";
+            $mediaNames[$mediaId] = $this->_getMediaNameByHeaders($headers);
         }
-        return [];
+        return $mediaNames;
+    }
+    private function _getMediaNameByHeaders(array $headers):string {
+        $contentDisposition = $headers['Content-disposition']??[''];
+        return trim(substr($contentDisposition, strrpos($contentDisposition, '=') + 1), '"') . "\n";
     }
 }

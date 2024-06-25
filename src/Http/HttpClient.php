@@ -90,9 +90,9 @@ class HttpClient implements HttpClientInterface
     public function getAsync(array $urls = []): array
     {
         $promises = [];
-        foreach ($urls as $url) {
+        foreach ($urls as $key=>$url) {
             list($uri,$query) = $url;
-            $promises[$url] = $this->client->getAsync($uri, compact('query'));
+            $promises[$key] = $this->client->getAsync($uri, compact('query'));
         }
         return (Utils::all($promises))->wait();
     }
