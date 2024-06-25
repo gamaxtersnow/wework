@@ -79,7 +79,7 @@ class Media
     public function getMediaNames(array $mediaIds): array {
         $urls = [];
         foreach ($mediaIds as $mediaId) {
-            $urls['media/get'] = ['media_id' => $mediaId];
+            $urls[] = ['media/get',['media_id' => $mediaId]];
         }
         return $this->httpClient->getAsync($urls);
     }

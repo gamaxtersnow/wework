@@ -5,6 +5,7 @@ namespace WeWork\Http;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Promise\Promise;
+use GuzzleHttp\Promise\Utils;
 use Psr\Http\Message\StreamInterface;
 
 class HttpClient implements HttpClientInterface
@@ -89,11 +90,12 @@ class HttpClient implements HttpClientInterface
     public function getAsync(array $urls = []): array
     {
         $promises = [];
-        foreach ($urls as $url => $query) {
-            $promises[$url] = $this->client->getAsync($url, compact('query'));
+        foreach ($urls as $url) {
+            list($uri,$query) = $url;
+            $promises[$url] = $this->client->getAsync($uri, compact('query'));
         }
         // 等待所有请求完成
-        $results = (new Promise($promises))->wait();
+        $results = (Utils::all($promises))->wait();
         // 处理每个请求的响应
         foreach ($results as $url => $result) {
             print_r($result);
