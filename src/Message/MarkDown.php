@@ -2,7 +2,7 @@
 
 namespace WeWork\Message;
 
-class Text implements ResponseMessageInterface, ReplyMessageInterface
+class MarkDown implements ResponseMessageInterface, ReplyMessageInterface
 {
     /**
      * @var string
@@ -23,8 +23,10 @@ class Text implements ResponseMessageInterface, ReplyMessageInterface
     public function formatForReply(): array
     {
         return [
-            'MsgType' => 'text',
-            'Content' => $this->content
+            'MsgType' => 'markdown',
+            'MarkDown' => [
+                'Content' => $this->content
+            ]
         ];
     }
 
@@ -34,8 +36,8 @@ class Text implements ResponseMessageInterface, ReplyMessageInterface
     public function formatForResponse(): array
     {
         return [
-            'msgtype' => 'text',
-            'text' => [
+            'msgtype' => 'markdown',
+            'markdown' => [
                 'content' => $this->content
             ]
         ];
