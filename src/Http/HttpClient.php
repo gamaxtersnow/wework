@@ -4,7 +4,6 @@ namespace WeWork\Http;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
-use GuzzleHttp\Promise\Promise;
 use GuzzleHttp\Promise\Utils;
 use Psr\Http\Message\StreamInterface;
 

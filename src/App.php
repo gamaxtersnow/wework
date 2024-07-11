@@ -4,7 +4,7 @@ namespace WeWork;
 
 use WeWork\Bridge\Cache;
 use WeWork\Bridge\Log;
-use WeWork\qrcode\WxQrcode;
+use WeWork\Qrcode\WxQrcode;
 use Doctrine\Common\Collections\ArrayCollection;
 use Endroid\QrCode\QrCode;
 use GuzzleHttp\Client;
